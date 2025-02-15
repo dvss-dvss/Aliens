@@ -3,6 +3,7 @@ import sys
 import pygame as pg
 
 from settings import Settings
+from ship import Ship
 
 
 class AlienInvasion:
@@ -16,16 +17,24 @@ class AlienInvasion:
         self.creen = pg.display.set_mode((self.settings.creen_width, self.settings.creen_height))
         pg.display.set_caption("Alien Invasion")
 
+        self.ship = Ship(self)
+    def _chek_events(self):
+        """Обробляэ натиснення клавиш та подйи миши"""
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                sys.exit()
+
+    def _update_screen(self):
+        """Оновлюэ зображення на екрани та видображаэ новий екран"""
+        self.creen.fill(self.settings.bg_color)
+        self.ship.blitme()
+
     def run_game(self):
         """Запуск основного циклу гри"""
         while True:
             #Видслидкування подий клавиатури та миши
-            for event in pg.event.get():
-                if event.type == pg.QUIT:
-                    sys.exit()
-
-            # За кожнойи интерацийи циклу оновлюэться екран
-            self.creen.fill(self.settings.bg_color)
+            self._chek_events()
+            self._update_screen()
 
             # Видображення останнього прорисованого украну
             pg.display.flip()
