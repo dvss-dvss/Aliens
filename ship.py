@@ -6,6 +6,7 @@ class Ship:
 
     def __init__(self, ai_game):
         """Инициализуэ корабель та встановлюе його початкову позицию"""
+        self.settings = ai_game.settings
         self.creen = ai_game.creen
         self.creen_rect = ai_game.creen.get_rect()
 
@@ -14,6 +15,9 @@ class Ship:
         self.rect = self.image.get_rect()
         # Кожен новий корабель з'являэться в нижний чатсини екрану
         self.rect.midbottom = self.creen_rect.midbottom
+
+        # Зберегання дробовойи координати цетра корабля
+        self.x = float(self.rect.x)
 
         # Флаг перемищення
         self.moving_right = False
@@ -26,6 +30,9 @@ class Ship:
     def update(self):
         """Оновлюэ позицию корабля з урахування флагу"""
         if self.moving_right:
-            self.rect.x += 1
+            self.x += self.settings.ship_speed
         if self.moving_left:
-            self.rect.x -= 1
+            self.x -= self.settings.ship_speed
+
+        # Оновлення атрибуту rect значення self.x
+        self.rect.x = self.x
