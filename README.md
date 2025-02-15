@@ -1,6 +1,6 @@
 # Aliens
 
-## Инсталяция PyGame
+## Інсталяція PyGame
 
 ```shell
 python -m pip install --user pygame
