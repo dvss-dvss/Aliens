@@ -18,11 +18,16 @@ class AlienInvasion:
         pg.display.set_caption("Alien Invasion")
 
         self.ship = Ship(self)
+
     def _chek_events(self):
         """Обробляэ натиснення клавиш та подйи миши"""
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 sys.exit()
+            elif event.type == pg.KEYDOWN:
+                if event.key == pg.K_RIGHT:
+                    # Перемищуэмо корабель праворуч
+                    self.ship.rect.x += 1
 
     def _update_screen(self):
         """Оновлюэ зображення на екрани та видображаэ новий екран"""
