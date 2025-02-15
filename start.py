@@ -27,7 +27,10 @@ class AlienInvasion:
             elif event.type == pg.KEYDOWN:
                 if event.key == pg.K_RIGHT:
                     # Перемищуэмо корабель праворуч
-                    self.ship.rect.x += 1
+                    self.ship.moving_right = True
+            elif event.type == pg.KEYUP:
+                if event.key == pg.K_RIGHT:
+                    self.ship.moving_right = False
 
     def _update_screen(self):
         """Оновлюэ зображення на екрани та видображаэ новий екран"""
@@ -39,6 +42,7 @@ class AlienInvasion:
         while True:
             #Видслидкування подий клавиатури та миши
             self._chek_events()
+            self.ship.update()
             self._update_screen()
 
             # Видображення останнього прорисованого украну
