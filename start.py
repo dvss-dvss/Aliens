@@ -56,6 +56,16 @@ class AlienInvasion:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
 
+    def _update_bullets(self):
+        """Оновлює позиції снарядів"""
+        self.bullets.update()
+        #print(len(self.bullets))
+
+        # Видалення снарядів, що вилетіли за край екрану
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)             
+
     def _update_screen(self):
         """Оновлюэ зображення на екрани та видображаэ новий екран"""
         self.creen.fill(self.settings.bg_color)
@@ -63,24 +73,17 @@ class AlienInvasion:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
 
+        # Відображення останнього прорисованого екрану
+        pg.display.flip()
+
     def run_game(self):
         """Запуск основного циклу гри"""
         while True:
             #Видслидкування подий клавиатури та миши
             self._chek_events()
             self.ship.update()
-            self.bullets.update()
+            self._update_bullets()
             self._update_screen()
-
-            # Видалення снарядив, що вилетили за край екрану
-            for bullet in self.bullets.copy():
-                 if bullet.rect.bottom <= 0:
-                      self.bullets.remove(bullet)
-            #print(len(self.bullets))
-
-
-            # Видображення останнього прорисованого украну
-            pg.display.flip()
 
 if __name__ == '__main__':
     # Створення екземпляру та запуск гри
