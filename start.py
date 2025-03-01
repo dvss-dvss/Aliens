@@ -14,7 +14,9 @@ class AlienInvasion:
         pg.init()
         self.settings = Settings()
 
-        self.creen = pg.display.set_mode((self.settings.creen_width, self.settings.creen_height))
+        self.creen = pg.display.set_mode((0, 0), pg.FULLSCREEN)
+        self.settings.creen_width = self.creen.get_rect().width
+        self.settings.creen_height = self.creen.get_rect().height
         pg.display.set_caption("Alien Invasion")
 
         self.ship = Ship(self)
