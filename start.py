@@ -41,6 +41,8 @@ class AlienInvasion:
                 self.ship.moving_right = True
         elif event.key == pg.K_LEFT:
                 self.ship.moving_left = True
+        elif event.key == pg.K_ESCAPE:
+            sys.exit()
 
     def _update_screen(self):
         """Оновлюэ зображення на екрани та видображаэ новий екран"""
