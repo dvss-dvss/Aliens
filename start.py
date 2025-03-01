@@ -2,6 +2,7 @@ import sys
 
 import pygame as pg
 
+from bullet import Bullet
 from settings import Settings
 from ship import Ship
 
@@ -46,11 +47,20 @@ class AlienInvasion:
                 self.ship.moving_left = True
         elif event.key == pg.K_ESCAPE:
             sys.exit()
+        elif event.key == pg.K_SPACE:
+            self._fire_bullet()
+
+    def _fire_bullet(self):
+        """Створюе новий снаряд та додаэ його до групи"""
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
 
     def _update_screen(self):
         """Оновлюэ зображення на екрани та видображаэ новий екран"""
         self.creen.fill(self.settings.bg_color)
         self.ship.blitme()
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
 
     def run_game(self):
         """Запуск основного циклу гри"""
