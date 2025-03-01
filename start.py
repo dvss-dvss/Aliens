@@ -71,6 +71,13 @@ class AlienInvasion:
             self.bullets.update()
             self._update_screen()
 
+            # Видалення снарядив, що вилетили за край екрану
+            for bullet in self.bullets.copy():
+                 if bullet.rect.bottom <= 0:
+                      self.bullets.remove(bullet)
+            #print(len(self.bullets))
+
+
             # Видображення останнього прорисованого украну
             pg.display.flip()
 
