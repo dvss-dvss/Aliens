@@ -117,6 +117,9 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)             
 
+        #
+        collisions = pg.sprite.groupcollide(self.bullets, self.aliens, True, True)
+
     def _update_screen(self):
         """Оновлюэ зображення на екрани та видображаэ новий екран"""
         self.creen.fill(self.settings.bg_color)
