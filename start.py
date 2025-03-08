@@ -121,6 +121,10 @@ class AlienInvasion:
         self.bullets.update()
         #print(len(self.bullets))
 
+        # Перевірка колізій "прибулець-корабель"
+        if pg.sprite.spritecollideany(self.ship, self.aliens):
+            print("Ship hit!!!")
+
         # Видалення снарядів, що вилетіли за край екрану
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
