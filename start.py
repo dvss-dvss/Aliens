@@ -2,6 +2,7 @@ import sys
 
 import pygame as pg
 
+from alien import Alien
 from bullet import Bullet
 from settings import Settings
 from ship import Ship
@@ -22,6 +23,9 @@ class AlienInvasion:
 
         self.ship = Ship(self)
         self.bullets = pg.sprite.Group()
+        self.aliens = pg.sprite.Group()
+
+        self._create_fleet()
 
     def _chek_events(self):
         """Обробляэ натиснення клавиш та подйи миши"""
@@ -50,6 +54,12 @@ class AlienInvasion:
         elif event.key == pg.K_SPACE:
             self._fire_bullet()
 
+    def _create_fleet(self):
+        """Створюе флот прибульцив"""
+        # Створення прибульця
+        alien = Alien(self)
+        self.aliens.add(alien)
+
     def _fire_bullet(self):
         """Створюе новий снаряд та додаэ його до групи"""
         if len(self.bullets) < self.settings.bullets_allowed:
@@ -72,6 +82,7 @@ class AlienInvasion:
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+        self.aliens.draw(self.creen)
 
         # Відображення останнього прорисованого екрану
         pg.display.flip()
