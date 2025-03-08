@@ -43,6 +43,19 @@ class AlienInvasion:
         elif event.key == pg.K_LEFT:
             self.ship.moving_left = False
 
+    def _change_fleet_direction(self):
+        """Опускае весь флот та звинюе напрям руху"""
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1
+
+    def _check_fleet_edges(self):
+        """Реагуе на досягненя прибульця краю екрана"""
+        for alien in self.aliens.sprites():
+            if alien.chek_edges():
+                self._change_fleet_direction()
+                break
+
     def _check_keydown_events(self, event):
         if event.key == pg.K_RIGHT:
                 # Перемищуэмо корабель праворуч
@@ -91,6 +104,7 @@ class AlienInvasion:
 
     def _update_aliens(self):
         """Оновлює позиції всіх прибульців флоту"""
+        self._check_fleet_edges()
         self.aliens.update()
 
     def _update_bullets(self):

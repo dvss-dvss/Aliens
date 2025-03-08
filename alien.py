@@ -22,7 +22,13 @@ class Alien(Sprite):
         # Збереження точної горизонтальної позиції прибульця
         self.x = float(self.rect.x)
 
-        def update(self):
-         """Переміщує прибульця праворуч"""
-         self.x += self.settings.alien_speed
-         self.rect.x = self.x
+    def chek_edges(self):
+        """Повертає True, якщо прибулець біля краю екрана"""
+        creen_rect = self.creen.get_rect()
+        if self.rect.right >= creen_rect.right or self.rect.left <=0:
+            return True
+
+    def update(self):
+        """Переміщує прибульця праворуч"""
+        self.x += self.settings.alien_speed * self.settings.fleet_direction
+        self.rect.x = self.x
