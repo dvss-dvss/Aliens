@@ -18,9 +18,9 @@ class AlienInvasion:
         pg.init()
         self.settings = Settings()
 
-        self.creen = pg.display.set_mode((0, 0), pg.FULLSCREEN)
-        self.settings.creen_width = self.creen.get_rect().width
-        self.settings.creen_height = self.creen.get_rect().height
+        self.screen = pg.display.set_mode((0, 0), pg.FULLSCREEN)
+        self.settings.screen_width = self.screen.get_rect().width
+        self.settings.screen_height = self.screen.get_rect().height
         pg.display.set_caption("Alien Invasion")
 
         # Створення екземпляра для зберігання ігрової статистики
@@ -94,13 +94,13 @@ class AlienInvasion:
         # Створення прибульця и вызначення килькости прибульцив в ряду
         alien = Alien(self)
         alien_width, alien_height = alien.rect.size
-        available_space_x = self.settings.creen_width - 2 * alien_width
+        available_space_x = self.settings.screen_width - 2 * alien_width
         number_aliens_x = available_space_x // (2 * alien_width)
  
         # Визначення кількості рядів
         ship_height = self.ship.rect.height
         available_space_y = (
-            self.settings.creen_height - (3 * alien_height) - ship_height
+            self.settings.screen_height - (3 * alien_height) - ship_height
         )
         number_rows = available_space_y // (2 * alien_height)
  
@@ -155,11 +155,11 @@ class AlienInvasion:
 
     def _update_screen(self):
         """Оновлюэ зображення на екрани та видображаэ новий екран"""
-        self.creen.fill(self.settings.bg_color)
+        self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
-        self.aliens.draw(self.creen)
+        self.aliens.draw(self.screen)
 
         # Відображення останнього прорисованого екрану
         pg.display.flip()

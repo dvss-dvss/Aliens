@@ -8,7 +8,7 @@ class Alien(Sprite):
     def __init__(self, ai_game):
         """Инициалицуе прибульця та задае його позицию"""
         super().__init__()
-        self.creen = ai_game.creen
+        self.screen = ai_game.screen
         self.settings = ai_game.settings
 
         # Завантаження зображення та вызначення rect
@@ -24,8 +24,8 @@ class Alien(Sprite):
 
     def chek_edges(self):
         """Повертає True, якщо прибулець біля краю екрана"""
-        creen_rect = self.creen.get_rect()
-        if self.rect.right >= creen_rect.right or self.rect.left <=0:
+        screen_rect = self.screen.get_rect()
+        if self.rect.right >= screen_rect.right or self.rect.left <=0:
             return True
 
     def update(self):

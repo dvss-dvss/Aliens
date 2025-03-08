@@ -8,7 +8,7 @@ class Bullet(Sprite):
     def __init__(self, ai_game):
         """Створюе об'экт снаряду в поточний позиции корабля"""
         super().__init__()
-        self.creen = ai_game.creen
+        self.screen = ai_game.screen
         self.settings = ai_game.settings
         self.color = self.settings.bullet_color
 
@@ -23,7 +23,7 @@ class Bullet(Sprite):
 
     def draw_bullet(self):
         """Виводе снаряд на екран"""
-        pg.draw.rect(self.creen, self.color, self.rect)
+        pg.draw.rect(self.screen, self.color, self.rect)
 
     def update(self):
         """Перемищуэ снаряд угору по екрану"""
