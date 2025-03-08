@@ -56,9 +56,18 @@ class AlienInvasion:
 
     def _create_fleet(self):
         """Створюе флот прибульцив"""
-        # Створення прибульця
+        # Створення прибульця и вызначення килькости прибульцив в ряду
         alien = Alien(self)
-        self.aliens.add(alien)
+        alien_width = alien.rect.width
+        available_space_x = self.settings.creen_width - 2 * alien_width
+        number_aliens_x = available_space_x // (2 * alien_width)
+ 
+         # Створення першого ряду прибульців
+        for alien_number in range(number_aliens_x):
+            alien = Alien(self)
+            alien.x = alien_width + 2 * alien_width * alien_number
+            alien.rect.x = alien.x
+            self.aliens.add(alien)
 
     def _fire_bullet(self):
         """Створюе новий снаряд та додаэ його до групи"""
