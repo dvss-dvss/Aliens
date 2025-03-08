@@ -89,6 +89,10 @@ class AlienInvasion:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
 
+    def _update_aliens(self):
+        """Оновлює позиції всіх прибульців флоту"""
+        self.aliens.update()
+
     def _update_bullets(self):
         """Оновлює позиції снарядів"""
         self.bullets.update()
@@ -117,6 +121,7 @@ class AlienInvasion:
             self._chek_events()
             self.ship.update()
             self._update_bullets()
+            self._update_aliens()
             self._update_screen()
 
 if __name__ == '__main__':
