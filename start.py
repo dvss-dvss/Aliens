@@ -52,6 +52,7 @@ class AlienInvasion:
             # Знищення існуючих снарядів та створення нового флоту
             self.bullets.empty()
             self._create_fleet() 
+            self.settings.increase_speed()
 
     def _chek_events(self):
         """Обробляэ натиснення клавиш та подйи миши"""
