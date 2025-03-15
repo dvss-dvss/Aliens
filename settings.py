@@ -8,7 +8,7 @@ class Settings:
        self.bg_color = (230, 230, 230)
 
        # Параметри корабля
-       self.ship_speed = 5
+       self.ship_speed = 3
        self.ship_limit = 3
 
        # Параметри снаряду
