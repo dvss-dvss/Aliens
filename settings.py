@@ -19,13 +19,13 @@ class Settings:
        # Параметри прибульців
        self.fleet_drop_speed = 10
 
-       #
+       # Темп пришвидшення гри
        self.speedup_scale = 1.1
 
        self.initialize_dynamic_setting()
 
     def initialize_dynamic_setting(self):
-        """"""
+        """Ініціалізує налаштування, що змінюються під час гри"""
         self.ship_speed_factor = 3
         self.bullet_speed_factor = 3
         self.alien_speed_factor = 1.5
@@ -34,7 +34,7 @@ class Settings:
         self.fleet_direction = 1
 
     def increase_speed(self):
-        """"""
+        """Збільшує налаштування швидкості"""
         self.ship_speed_factor *= self.speedup_scale
         self.bullet_speed_factor *= self.speedup_scale
         self.alien_speed_factor *= self.speedup_scale
