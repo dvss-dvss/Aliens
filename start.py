@@ -98,9 +98,19 @@ class AlienInvasion:
             self._fire_bullet()
 
     def _check_play_button(self, mouse_pos):
-         """Запускає нову гру коли натиснуто кнопку Play"""
-         if self.play_button.rect.collidepoint(mouse_pos):
-             self.stats.game_active = True
+        """Запускає нову гру коли натиснуто кнопку Play"""
+        if self.play_button.rect.collidepoint(mouse_pos):
+            # Скидання ігрової статистики
+            self.stats.reset_stats()
+            self.stats.game_active = True
+
+            # Очистка списків прибульців та снарядів
+            self.aliens.empty()
+            self.bullets.empty()
+ 
+            # Створення нового флоту та розміщення корабля по центру
+            self._create_fleet()
+            self.ship.center_ship()
 
     def _create_alien(self, alien_number, row_number):
         alien = Alien(self)
