@@ -63,6 +63,10 @@ class AlienInvasion:
             self._create_fleet() 
             self.settings.increase_speed()
 
+            # Збильшення ривня
+            self.stats.level += 1
+            self.sb.prepare_level
+
     def _chek_events(self):
         """Обробляэ натиснення клавиш та подйи миши"""
         for event in pg.event.get():
@@ -116,6 +120,7 @@ class AlienInvasion:
             self.stats.reset_stats()
             self.stats.game_active = True
             self.sb.prepare_score()
+            self.sb.prepare_level()
 
             # Очистка списків прибульців та снарядів
             self.aliens.empty()
@@ -216,7 +221,7 @@ class AlienInvasion:
         self.aliens.draw(self.screen)
 
         # Виведення інформації про результати
-        self.sb.Show_score()
+        self.sb.show_score()
 
         # Кнопка Play відображається, коли гра неактивна
         if not self.stats.game_active:
