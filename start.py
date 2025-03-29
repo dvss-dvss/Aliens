@@ -35,8 +35,9 @@ class AlienInvasion:
 
         self._create_fleet()
 
-        # Створення кнопки Play
+        # Створення кнопок
         self.play_button = Button(self, "Play")
+        self.pause_buttonn = Button(self, "Pause")
 
     def _check_aliens_bottom(self):
          """Перевіряє, чи досягли прибульці нижнього краю екрана"""
@@ -237,6 +238,8 @@ class AlienInvasion:
         # Кнопка Play відображається, коли гра неактивна
         if not self.stats.game_active:
             self.play_button.draw_button()
+        elif self.stats.game_paused:
+            self.pause_buttonn.draw_button()
 
         # Відображення останнього прорисованого екрану
         pg.display.flip()
